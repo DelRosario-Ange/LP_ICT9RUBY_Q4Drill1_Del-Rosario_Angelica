@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Activity</title>
+
+    <style>
+        body{
+            font-family: 'Gill Sans MT';
+            text-align: center;
+            margin-top: 80px;
+            background-color: #74cdc2;
+        }
+        .container{
+            background: #4b837c;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            border: 3px solid #284542;
+            border-radius: 15px;
+        }
+        input{
+            padding: 6px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        button{
+            padding: 8px;
+            width: 100px;
+            border: 3px solid white;
+            border-radius: 15px;
+        }
+        .output{
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2> Electricity Consumption Classifier</h2>
+        <input type="number" id="usage" placeholder="Input kilowatt per hour">
+        <br>
+        <button onclick="evaluateUsage()"> EVALUATE </button>
+        
+        <div class="output">
+            <p id="kwh"> </p>
+        </div>
+    </div>
+
+    <script>
+        function evaluateUsage(){
+            var usage = document.getElementById("usage").value;
+            if(usage=== ""){
+                alert("Please enter usage amount.");
+                return;
+            }
+
+            if(usage <=100){
+                kwh = "Lifeline Consumer";
+            } else if(usage <=200) {
+                kwh = "Low Consumption";
+            } else if(usage <=300){
+                kwh = "Average Consumption"
+            } else if (usage <=500){
+                kwh = "High Consumption"
+            } else{
+                kwh = "Very High Consumption"
+            }
+            
+            var remark = "";
+            switch(kwh){
+                case "Lifeline Consumer":
+                remark="Discounted electricity rates";
+                break;
+
+                case "Low Consumption":
+                remark="Normal residential rate"
+                break;
+
+                case "Average Consumption":
+                remark="Typical electricity rate"
+                break;
+                
+                case "High Consumption":
+                remark="Higher electricity usage"
+                break;
+
+                default:
+                remark="Heavy electricity users"
+            }
+
+            document.getElementById("kwh").innerHTML = "Category: " + kwh + " " + "(" + remark + ")";
+        }
+    </script>
+</body>
+</html>
